@@ -20,11 +20,11 @@
       "dom"
     ],
     "paths": {
-      "angular2-jsonapi": [
-        "dist/angular2-jsonapi"
+      "ng-jsonapi": [
+        "dist/ng-jsonapi"
       ],
-      "angular2-jsonapi/*": [
-        "dist/angular2-jsonapi/*"
+      "ng-jsonapi/*": [
+        "dist/ng-jsonapi/*"
       ]
     }
   },
