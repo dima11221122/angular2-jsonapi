@@ -3,7 +3,9 @@ import includes from 'lodash-es/includes';
 import { Observable } from 'rxjs';
 import { JsonApiDatastore, ModelType } from '../services/json-api-datastore.service';
 import { ModelConfig } from '../interfaces/model-config.interface';
-import * as _ from 'lodash';
+import cloneDeep from 'lodash-es/cloneDeep';
+import extend from 'lodash-es/extend';
+import isEqual from 'lodash-es/isEqual';
 import { AttributeMetadata } from '../constants/symbols';
 import { HttpHeaders } from '@angular/common/http';
 
@@ -84,13 +86,13 @@ export class JsonApiModel {
       if (attributesMetadata.hasOwnProperty(propertyName)) {
         const metadata: any = attributesMetadata[propertyName];
         if (metadata.nested) {
-          this[AttributeMetadata][propertyName].hasDirtyAttributes = !_.isEqual(
+          this[AttributeMetadata][propertyName].hasDirtyAttributes = !isEqual(
             attributesMetadata[propertyName].oldValue,
             attributesMetadata[propertyName].newValue
           );
           this[AttributeMetadata][propertyName].serialisationValue = attributesMetadata[propertyName].converter(
             Reflect.getMetadata('design:type', this, propertyName),
-            _.cloneDeep(attributesMetadata[propertyName].newValue),
+            cloneDeep(attributesMetadata[propertyName].newValue),
             true
           );
         }
@@ -103,7 +105,7 @@ export class JsonApiModel {
     for (const propertyName in attributesMetadata) {
       if (attributesMetadata.hasOwnProperty(propertyName)) {
         if (attributesMetadata[propertyName].hasDirtyAttributes) {
-          this[propertyName] = _.cloneDeep(attributesMetadata[propertyName].oldValue);
+          this[propertyName] = cloneDeep(attributesMetadata[propertyName].oldValue);
         }
       }
     }
@@ -252,7 +254,7 @@ export class JsonApiModel {
     const peek = this.internalDatastore.peekRecord(modelType, data.id);
 
     if (peek) {
-      _.extend(peek, this.internalDatastore.transformSerializedNamesToPropertyNames(modelType, data.attributes));
+      extend(peek, this.internalDatastore.transformSerializedNamesToPropertyNames(modelType, data.attributes));
       return peek;
     }
 

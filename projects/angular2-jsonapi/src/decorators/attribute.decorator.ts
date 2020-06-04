@@ -1,7 +1,7 @@
 import { AttributeMetadata } from '../constants/symbols';
 import { AttributeDecoratorOptions } from '../interfaces/attribute-decorator-options.interface';
 import { DateConverter } from '../converters/date/date.converter';
-import * as _ from 'lodash';
+import isEqual from 'lodash-es/isEqual';
 
 export function Attribute(options: AttributeDecoratorOptions = {}): PropertyDecorator {
   return (target: any, propertyName: string) => {
@@ -60,7 +60,7 @@ export function Attribute(options: AttributeDecoratorOptions = {}): PropertyDeco
         oldValue,
         nested: false,
         serializedName: options.serializedName,
-        hasDirtyAttributes: !_.isEqual(oldValue, newValue),
+        hasDirtyAttributes: !isEqual(oldValue, newValue),
         serialisationValue: converter(targetType, newValue, true)
       };
     };

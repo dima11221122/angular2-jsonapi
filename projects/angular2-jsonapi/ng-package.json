@@ -5,8 +5,11 @@
     "entryFile": "src/public-api.ts",
     "umdModuleIds": {
       "date-fns": "date-fns",
-      "lodash": "lodash",
-      "lodash-es": "lodash-es",
+      "lodash-es/find": "lodash-es/find",
+      "lodash-es/includes": "lodash-es/includes",
+      "lodash-es/isEqual": "lodash-es/isEqual",
+      "lodash-es/cloneDeep": "lodash-es/cloneDeep",
+      "lodash-es/extend": "lodash-es/extend",
       "qs": "qs"
     }
   },
