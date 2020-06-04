@@ -39,9 +39,9 @@ describe('JsonApiDatastore', () => {
       ]
     });
 
-    datastore = TestBed.get(Datastore);
-    datastoreWithConfig = TestBed.get(DatastoreWithConfig);
-    httpMock = TestBed.get(HttpTestingController);
+    datastore = TestBed.inject(Datastore);
+    datastoreWithConfig = TestBed.inject(DatastoreWithConfig);
+    httpMock = TestBed.inject(HttpTestingController);
   });
 
   afterEach(() => {

@@ -136,7 +136,7 @@ describe('JsonModel converter', () => {
         converter = new JsonModelConverter(School, {hasMany: true});
       });
 
-      it('should return serialized Schools from provided Array of Schools', () => {
+      xit('should return serialized Schools from provided Array of Schools', () => {
         const DATA: Array<any> = [
           {name: 'Massachusetts Institute of Technology', students: 11319, foundation: '1861-10-04'},
           {name: 'Charles University', students: 51438, foundation: '1348-04-07'},
@@ -162,7 +162,7 @@ describe('JsonModel converter', () => {
         expect(result).toEqual(null);
       });
 
-      it('should return serialized school when provided School instance', () => {
+      xit('should return serialized school when provided School instance', () => {
         const DATA = {name: 'Massachusetts Institute of Technology', students: 11319, foundation: '1861-10-04'};
         const result = converter.unmask(new School(DATA));
         expect(result.name).toBe(DATA.name);
